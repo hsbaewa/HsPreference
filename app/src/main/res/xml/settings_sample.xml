@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <kr.co.hs.preference.sample.SamplePreferenceCategory
+        android:title="일반"
+        >
+
+        <Preference
+            android:key="Setting1"
+            android:summary="설정1"
+            android:title="설정1" />
+
+        <Preference
+            android:key="Setting2"
+            android:summary="설정2"
+            android:title="설정2" />
+
+    </kr.co.hs.preference.sample.SamplePreferenceCategory>
+
+</PreferenceScreen>
