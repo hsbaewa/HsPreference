@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -33,6 +34,7 @@ import kr.co.hs.app.HsActivity;
 import kr.co.hs.app.HsApplication;
 import kr.co.hs.app.HsUIConstant;
 import kr.co.hs.app.IHs;
+import kr.co.hs.app.IHsApplication;
 import kr.co.hs.app.IHsFragment;
 import kr.co.hs.app.IHsPackageManager;
 import kr.co.hs.app.IHsRegisterBroadcastReceiver;
@@ -49,7 +51,16 @@ import kr.co.hs.content.HsPreferences;
  * 패키지명 : kr.co.hs.preference.app
  */
 
-public abstract class HsPreferenceFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener,Preference.OnPreferenceChangeListener,HsUIConstant, HsHandler.OnHandleMessage, DialogInterface.OnDismissListener, IHsPackageManager, IHsFragment, IHs, IHsRegisterBroadcastReceiver {
+public abstract class HsPreferenceFragment extends PreferenceFragmentCompat implements
+        Preference.OnPreferenceClickListener,
+        Preference.OnPreferenceChangeListener,
+        HsUIConstant,
+        HsHandler.OnHandleMessage,
+        DialogInterface.OnDismissListener,
+        IHsPackageManager,
+        IHsFragment,
+        IHs,
+        IHsRegisterBroadcastReceiver {
 
     private HsHandler handler;
     private View contentView;
@@ -190,7 +201,18 @@ public abstract class HsPreferenceFragment extends PreferenceFragmentCompat impl
                 Bundle data = msg.getData();
                 String message = data.getString(TOAST_MESSAGE);
                 int duration = data.getInt(TOAST_DURATION, Toast.LENGTH_SHORT);
-                Toast.makeText(getContext(), message, duration).show();
+                switch (duration){
+                    case Toast.LENGTH_SHORT:{
+                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                    }
+                    case Toast.LENGTH_LONG:{
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                    }
+                    default:{
+                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+
                 return true;
             }
         }
@@ -509,22 +531,23 @@ public abstract class HsPreferenceFragment extends PreferenceFragmentCompat impl
         return true;
     }
 
+    @Override
+    public int getColorCompat(int i) {
+        IHsApplication application = getHsApplication();
+        if(application != null)
+            return application.getColorCompat(i);
+        else
+            return ContextCompat.getColor(getContext(), i);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public Drawable getDrawableCompat(int i) {
+        IHsApplication application = getHsApplication();
+        if(application != null)
+            return application.getDrawableCompat(i);
+        else
+            return ContextCompat.getDrawable(getContext(), i);
+    }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
