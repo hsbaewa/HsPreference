@@ -43,7 +43,7 @@ import kr.co.hs.app.OnRequestResult;
 import kr.co.hs.content.HsBroadcastReceiver;
 import kr.co.hs.content.HsDialogInterface;
 import kr.co.hs.content.HsPermissionChecker;
-import kr.co.hs.content.HsPreferences;
+import kr.co.hs.content.advancedpreference.AdvancedPreference;
 
 /**
  * 생성된 시간 2017-02-08, Bae 에 의해 생성됨
@@ -404,7 +404,7 @@ public abstract class HsPreferenceFragment extends PreferenceFragmentCompat impl
     }
 
     @Override
-    public HsPreferences getDefaultPreference() {
+    public AdvancedPreference getDefaultPreference() {
         if(getHsApplication() == null){
             try {
                 throw new Exception("상위 Application 컴포넌트가 HsApplication이어야 합니다.");
