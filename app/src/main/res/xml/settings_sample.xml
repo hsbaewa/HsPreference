@@ -2,16 +2,22 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <kr.co.hs.preference.sample.SamplePreferenceCategory
+        android:key = "Category"
         android:title="일반"
         >
 
-        <Preference
+        <kr.co.hs.preference.sample.SamplePreference
             android:key="Setting1"
             android:summary="설정1"
             android:title="설정1" />
 
-        <Preference
+        <kr.co.hs.preference.sample.SamplePreference
             android:key="Setting2"
+            android:summary="설정2"
+            android:title="설정2" />
+
+        <kr.co.hs.preference.sample.SampleSwitchPreference
+            android:key="Setting3"
             android:summary="설정2"
             android:title="설정2" />
 

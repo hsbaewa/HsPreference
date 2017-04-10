@@ -13,6 +13,8 @@ import android.widget.TextView;
  */
 
 public abstract class HsPreferenceCategory extends PreferenceCategory{
+    TextView mTextViewTitle;
+
     public HsPreferenceCategory(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -31,13 +33,12 @@ public abstract class HsPreferenceCategory extends PreferenceCategory{
 
     @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
+        mTextViewTitle = (TextView) holder.findViewById(android.R.id.title);
+        if(mTextViewTitle != null)
+            onBindTitleTextView(mTextViewTitle);
         super.onBindViewHolder(holder);
-        try{
-            ((TextView)holder.findViewById(android.R.id.title)).setTextColor(onTitleTextColor(getContext()));
-        }catch (Exception e){
-
-        }
     }
 
-    public abstract int onTitleTextColor(Context context);
+
+    protected abstract void onBindTitleTextView(TextView textViewTitle);
 }

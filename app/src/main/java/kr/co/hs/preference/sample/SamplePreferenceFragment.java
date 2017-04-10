@@ -2,9 +2,13 @@ package kr.co.hs.preference.sample;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.preference.Preference;
+import android.view.View;
 import android.view.ViewGroup;
 
+import kr.co.hs.preference.HsPreference;
+import kr.co.hs.preference.HsPreferenceCategory;
 import kr.co.hs.preference.app.HsPreferenceFragment;
 import kr.co.hs.util.Logger;
 
@@ -23,7 +27,22 @@ public class SamplePreferenceFragment extends HsPreferenceFragment {
 
     @Override
     public void onCreateHsPreference(Bundle bundle, String s) {
+        Logger.d("a");
+//        HsPreferenceCategory category = (HsPreferenceCategory) findPreference("Category");
+//        category.getTextViewTitle().setTextColor(ContextCompat.getColor(getContext(), R.color.colorRed500));
+//        HsPreference setting1 = (HsPreference) findPreference("Setting1");
+    }
 
+    @Override
+    protected void onBindPreferences() {
+        Logger.d("a");
+        super.onBindPreferences();
+        Logger.d("a");
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override

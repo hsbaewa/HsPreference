@@ -3,6 +3,7 @@ package kr.co.hs.preference.sample;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 import kr.co.hs.preference.HsPreferenceCategory;
 
@@ -30,7 +31,7 @@ public class SamplePreferenceCategory extends HsPreferenceCategory {
     }
 
     @Override
-    public int onTitleTextColor(Context context) {
-        return ContextCompat.getColor(context, R.color.colorBlack);
+    protected void onBindTitleTextView(TextView textViewTitle) {
+        textViewTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.colorRed500));
     }
 }
